@@ -1,0 +1,357 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap");
+
+        body {
+            font-family: "Metal Mania", cursive;
+            background: #fff; /* Цвет фона */
+            display: flex;
+            flex-direction: column;
+            margin: 50px;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 20px;
+        }
+
+        img.icon {
+            width: 40px; /* Установка ширины иконки */
+            height: auto; /* Сохраняет пропорции */
+            margin-right: 10px; /* Отступ справа от иконки */
+        }
+
+        .toggle {
+            cursor: pointer;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            outline: none;
+            text-align: left;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+            .toggle:hover {
+                background-color: #0056b3;
+            }
+
+        .content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            background-color: #fff0cc;
+        }
+
+            .content.active {
+                padding: 10px;
+            }
+
+        .faq {
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+
+
+        .rotated {
+            transform: rotate(90deg);
+        }
+
+        .rating {
+            margin-top: 10px;
+        }
+
+        .faq-linkk {
+            margin-left: 20px; /* Отступ слева для ссылки FAQ */
+            text-decoration: none; /* Убираем подчеркивание */
+            color: #334efc; /* Цвет ссылки */
+            font-size: 1.5rem; /* Размер шрифта для ссылки */
+            transition: color 0.3s, transform 0.3s; /* Анимация изменения цвета и трансформации */
+        }
+
+        .faq-link {
+            align-self: flex-start; /* Выравнивание по левому краю */
+            margin-top: -30px; /* Поднимаем заголовок выше */
+            margin-left: 0; /* Убираем отступ слева */
+            font-size: 2rem; /* Размер шрифта для заголовка */
+            color: #334efc; /* Цвет ссылки */
+            transition: color 0.3s, transform 0.3s; /* Анимация изменения цвета и трансформации */
+        }
+
+        .sr {
+            font-family: Metal Mania, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .search-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 20px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px 40px;
+            border: 2px solid #334efc;
+            border-radius: 25px;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+            input[type="text"]:focus {
+                border-color: #fcc133;
+                box-shadow: 0 0 5px rgba(252, 193, 51, 0.5);
+                outline: none;
+            }
+
+        /* Иконка поиска */
+        .search-icon {
+            position: absolute;
+            left: 15px; /* Позиция иконки */
+            top: 50%; /* Центрируем по вертикали */
+            transform: translateY(-50%); /* Центрируем по вертикали */
+            color: #334efc; /* Цвет иконки */
+            font-size: 20px; /* Размер иконки */
+        }
+
+        button {
+            font-size: 17px;
+            font-family: "Metal Mania", cursive;
+            overflow: hidden;
+            padding: 0 10px;
+            margin-right: 10px;
+            transition: transform 0.3s;
+        }
+
+
+        .gif-container {
+            position: absolute; /* Позволяет позиционировать на странице */
+            top: 12%; /* Положение по вертикали */
+            right: 40px; /* Отступ от правого края */
+        }
+
+            .gif-container img {
+                width: 150px; /* Установка ширины гифки */
+            }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="index.html" target="_blank" class="faq-linkk"><<</a>
+        <img src="https://img.freepik.com/premium-vector/cat-headphones-mascot-logo-hand-drawn-illustration_442940-2557.jpg" alt="Support Icon" class="icon">
+        <h1>Support</h1>
+    </header>
+    <h1 class="faq-link">Часто задаваемые вопросы студентов</h1>
+    <div class="search-container">
+        <span class="search-icon">🔍</span> <!-- Иконка поиска -->
+        <input type="text" id="searchInput" placeholder="Поиск вопросов..." onkeyup="filterQuestions()">
+    </div>
+
+    <div class="gif-container">
+        <img src="https://sch113uz.mskobr.ru/files/%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%B8%D0%BA.gif" alt="Гифка">
+    </div>
+
+
+    <div class="faq" onclick="toggleAnswer(this)">
+        <span class="toggle-icon">▶️</span>
+        <strong>Каковы требования для поступления в магистратуру?</strong>
+        <div class="content">
+            Требования могут варьироваться в зависимости от университета, но обычно это наличие степени бакалавра и удовлетворительных баллов в тестах на поступление.
+            <div class="rating">
+                <button onclick="rateAnswer(this, 1)">👍</button>
+                <button onclick="rateAnswer(this, -1)">👎</button>
+                <span class="rating-score">0</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq" onclick="toggleAnswer(this)">
+        <span class="toggle-icon">▶️</span>
+        <strong>Что такое магистратура?</strong>
+        <div class="content">
+            <p>
+                Магистратура — это уровень высшего образования, который позволяет углубленно изучать выбранную специальность после бакалавриата и предоставляет возможность получения академической
+            </p><div class="rating">
+                <button onclick="rateAnswer(this, 1)">👍</button>
+                <button onclick="rateAnswer(this, -1)">👎</button>
+                <span class="rating-score">0</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq" onclick="toggleAnswer(this)">
+        <span class="toggle-icon">▶️</span>
+        <strong>Какую дипломную работу нужно защищать?</strong>
+        <div class="content">
+            <p>
+                Дипломная работа — это индивидуальное исследование студента по выбранной теме, которое необходимо подготовить и защитить перед комиссией для получения степени.
+            </p>
+            <div class="rating">
+                <button onclick="rateAnswer(this, 1)">👍</button>
+                <button onclick="rateAnswer(this, -1)">👎</button>
+                <span class="rating-score">0</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq" onclick="toggleAnswer(this)">
+        <span class="toggle-icon">▶️</span>
+        <strong>Какие методы подготовки к экзаменам наиболее эффективны?</strong>
+        <div class="content">
+            <p>
+                Активное повторение: Использование методов, таких как самопроверка, тестирование себя или объяснение материала другим, помогает лучше усваивать информацию.<br />
+                <br />Подготовка конспектов/kарт: Создание заметок или ментальных карт способствует структурированию знаний и уменьшению объема для запоминания.<br />
+                <br />Планирование времени: Определите график подготовки, разбив материал на небольшие части, чтобы не перегружаться перед экзаменом.<br />
+                <br />Групповое обучение: Обсуждение тем с сокурсниками может помочь запомнить информацию и рассмотреть её с разных точек зрения.<br />
+                <br />Чередование тем: Изучение различных тем в течение занятия может помочь поддерживать интерес и улучшить понимание.
+            </p>
+            <div class="rating">
+                <button onclick="rateAnswer(this, 1)">👍</button>
+                <button onclick="rateAnswer(this, -1)">👎</button>
+                <span class="rating-score">0</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq" onclick="toggleAnswer(this)">
+        <span class="toggle-icon">▶️</span>
+        <strong>Существуют ли проверенные стратегии для снижения стресса перед экзаменами?</strong>
+        <div class="content">
+            <p>
+                - Дыхательные упражнения<br />
+                <br />- Физическая активность<br />
+                <br /> - Правильное питание и сон<br />
+                <br />- Позитивные аффирмации<br />
+                <br /> - Визуализация успеха
+            </p>
+            <div class="rating">
+                <button onclick="rateAnswer(this, 1)">👍</button>
+                <button onclick="rateAnswer(this, -1)">👎</button>
+                <span class="rating-score">0</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq" onclick="toggleAnswer(this)">
+        <span class="toggle-icon">▶️</span>
+        <strong>В чем преимущества онлайн-образования по сравнению с традиционным?</strong>
+        <div class="content">
+
+            <p>
+                Онлайн-образование позволяет учиться в удобное время и в удобном для студента месте.
+                Студенты могут получить доступ к большому количеству онлайн-материалов, лекций и курсов.
+            </p>
+            <div class="rating">
+                <button onclick="rateAnswer(this, 1)">👍</button>
+                <button onclick="rateAnswer(this, -1)">👎</button>
+                <span class="rating-score">0</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq" onclick="toggleAnswer(this)">
+        <span class="toggle-icon">▶️</span>
+        <strong>Какие существуют способы финансирования учебы?</strong>
+        <div class="content">
+            <p>
+                Стипендии: Безвозмездные средства, предоставляемые на основе академических заслуг, финансовой необходимости или других критериев. <br />
+                <br /> Гранты: Финансирование, предоставляемое на определенные программы или исследования. <br />
+                <br />Студенческие кредиты: Заёмные средства, которые нужно вернуть после окончания учебы. <br />
+                <br />Работа на кампусе: Некоторые студенты работают на неполный рабочий день в учебном заведении, чтобы покрыть часть расходов. <br />
+                <br />Подработка: Многие студенты находят временную работу вне кампуса для получения дополнительных средств.
+
+            </p>
+            <div class="rating">
+                <button onclick="rateAnswer(this, 1)">👍</button>
+                <button onclick="rateAnswer(this, -1)">👎</button>
+                <span class="rating-score">0</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq" onclick="toggleAnswer(this)">
+        <span class="toggle-icon">▶️</span>
+        <strong>Какие ресурсы доступны для помощи студентам в учебе?</strong>
+        <div class="content">
+            <p>
+                Студенческие службы поддержки: Это могут быть центры по вопросам учебы, консультанты и психологи.<br />
+                <br /> Библиотеки: Библиотеки предлагают доступ к учебным материалам и местам для подготовки.<br />
+                <br /> Онлайн-ресурсы: Платформы, такие как Khan Academy, Coursera, или академические материалы на YouTube могут быть полезны для самообразования.<br />
+                <br /> Группы и сообщества: Участие в студенческих группах или форумах может оказать поддержку и предоставить дополнительные ресурсы.<br />
+                <br />Курсы дополнительного обучения: Многие учебные заведения предлагают дополнительные курсы или семинары по специфическим предметам.
+            </p>
+
+            <div class="rating">
+                <button onclick="rateAnswer(this, 1)">👍</button>
+                <button onclick="rateAnswer(this, -1)">👎</button>
+                <span class="rating-score">0</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleAnswer(faqElement) {
+            const answer = faqElement.querySelector('.content');
+            const toggleIcon = faqElement.querySelector('.toggle-icon');
+
+            answer.classList.toggle('active');
+            toggleIcon.classList.toggle('rotated');
+
+            // Обновление max-height
+            if (answer.classList.contains('active')) {
+                answer.style.maxHeight = answer.scrollHeight + "px"; // Устанавливаем max-height по размеру содержимого
+            } else {
+                answer.style.maxHeight = null; // Скрываем содержимое
+            }
+        }
+
+        function filterQuestions() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const faqs = document.querySelectorAll('.faq');
+
+            faqs.forEach(faq => {
+                const questionText = faq.textContent || faq.innerText;
+                faq.style.display = questionText.toLowerCase().includes(filter) ? '' : 'none';
+            });
+        }
+
+        function rateAnswer(button, value) {
+            const ratingScore = button.parentElement.querySelector('.rating-score');
+            const currentScore = parseInt(ratingScore.textContent);
+            ratingScore.textContent = currentScore + value;
+        }
+    </script>
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+

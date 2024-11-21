@@ -1,0 +1,228 @@
+﻿
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чат с ботом</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap");
+
+        body {
+            font-family: "Metal Mania", cursive;
+            background-color: #f0f0f0;
+            background: #fff; /* Цвет фона */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 50px;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 20px;
+        }
+
+        img.icon {
+            width: 40px; /* Установка ширины иконки */
+            height: auto; /* Сохраняет пропорции */
+            margin-right: 10px; /* Отступ справа от иконки */
+        }
+
+        #chatBox {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            height: 300px;
+            width: 400px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            clear: both; /* Очищаем обтекание */
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        input[type="text"] {
+            width: 400px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+        .container {
+            display: flex; /* Используем flexbox для размещения элементов */
+            /* justify-content: space-between;  Размещаем элементы по краям */
+            align-items: center; /* Центрируем по вертикали */
+            width: 100%; /* Занимаем всю ширину */
+            /*max-width: 1200px;  Максимальная ширина контейнера */
+        }
+
+        .text-container {
+            max-width: 60%; /* Ограничиваем ширину текстового контейнера */
+        }
+
+        .gradient {
+            font-size: 3rem; /* Уменьшенный размер шрифта */
+            line-height: 1.2; /* Сокращенное расстояние между строками */
+            background: linear-gradient(to right, #fcc133, #334efc);
+            display: inline-block;
+            /* Clip the background upto the text */
+            -webkit-background-clip: text;
+            background-clip: text;
+            /* Set the color of the text to transparent */
+            color: transparent;
+            margin: 10px 0; /* Уменьшение отступов вокруг текста */
+        }
+
+        .faq-linkk {
+            margin-left: 20px; /* Отступ слева для ссылки FAQ */
+            text-decoration: none; /* Убираем подчеркивание */
+            color: #334efc; /* Цвет ссылки */
+            font-size: 1.5rem; /* Размер шрифта для ссылки */
+            transition: color 0.3s, transform 0.3s; /* Анимация изменения цвета и трансформации */
+        }
+
+        .image {
+            width: 200px; /* Установка ширины для изображения */
+            height: auto; /* Сохраняет пропорции */
+            margin-left: 20px; /* Отступ слева для картинки */
+        }
+
+        .gif-container {
+            position: absolute; /* Позволяет позиционировать на странице */
+            top: 20%; /* Положение по вертикали */
+            right: 10px; /* Отступ от правого края */
+        }
+
+            .gif-container img {
+                width: 500px; /* Установка ширины гифки */
+            }
+
+        
+
+        .chat-message {
+            /* margin: 5px 0;*/
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-block;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .user {
+            background-color: #d1e7dd;
+            color: #0f5132;
+            text-align: right;
+            border-bottom-right-radius: 0;
+            margin-left: auto; /* Выравнивание вправо */
+        }
+
+        .bot {
+            background-color: #cfe2ff;
+            color: #1c3e9a;
+            text-align: left;
+            margin-right: auto; /* Выравнивание влево */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" target="_blank" class="faq-linkk"><<</a>
+
+        <img src="https://img.freepik.com/premium-vector/cat-headphones-mascot-logo-hand-drawn-illustration_442940-2557.jpg" alt="Support Icon" class="icon">
+        <h1>Support</h1>
+    </header>
+
+    <div class="container">
+        <div class="text-container">
+            <h1 class="gradient">
+                Бот-автоответ
+            </h1>
+        </div>
+        <img class="image" src="https://avatars.mds.yandex.net/i?id=48010eb65864517240f46495ad89ad8988962698-10471476-images-thumbs&ref=rim&n=33&w=480&h=320" alt="Изображение" />
+    </div>
+
+    <div id="chatBox"></div>
+
+    <div style="display: flex;">
+        <input type="text" id="userInput" placeholder="Введите ваше сообщение..." />
+        <button id="sendBtn">Отправить</button>
+    </div>
+
+
+
+    <div class="gif-container">
+        <img src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/valdezdanielcaleb/php4d5t8m.gif" alt="Гифка">
+    
+    </div>
+    <script>
+        document.getElementById('sendBtn').addEventListener('click', function () {
+            const userInput = document.getElementById('userInput');
+            const userMessage = userInput.value;
+
+            if (userMessage.trim() === "") return; // Игнорируем пустые сообщения
+
+            // Отображаем сообщение пользователя
+            displayMessage(userMessage, 'user');
+
+            // Генерируем ответ бота
+            const botResponse = getBotResponse(userMessage);
+
+            // Отображаем ответ бота с задержкой
+            setTimeout(() => {
+                displayMessage(botResponse, 'bot');
+            }, 1000); // Задержка 1 секунда
+
+            // Очищаем поле ввода
+            userInput.value = '';
+        });
+
+        function displayMessage(message, sender) {
+            const chatBox = document.getElementById('chatBox');
+            const messageElement = document.createElement('div');
+            messageElement.className = `chat-message ${sender}`;
+            messageElement.innerHTML = message;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight; // Прокрутка до последнего сообщения
+        }
+
+        function getBotResponse(input) {
+            // Простейший пример ответов от бота
+            const responses = {
+                "Привет": "Здравствуйте! Как я могу помочь?",
+                "Как дела?": "У меня все хорошо, спасибо!",
+                "Что ты умеешь?": "Я могу отвечать на ваши вопросы.",
+                "Пока": "До свидания! Обращайтесь, если потребуется помощь.",
+                "Я не могу зайти в личный кабинет": "Вот что я могу Вам предложить:<br><ol><li>Убедитесь, что Вы вводите правильный логин и пароль.</li><li>Ваша проблема может быть связана с плохим интернет соединением.</li><li>Если Вы забыли пароль, Вы можете восстановить его <a href='https://esstu.ru/index.htm' target='_blank'>здесь</a>.</li></ol>",
+                "Как узнать расписание?": "Расписание можете посмотреть на <a href='https://portal.esstu.ru/raspisan.htm' target='_blank'>сайте</a> ВСГУТУ",
+                "Как восстановить пароль от личного кабинета": "Новую учетную запись можно получить в деканате.",
+                "Когда начинается сессия?": "Сессия проходит в период с 14 декабря по 26 декабря.",
+                "Где можно посмотреть списки поступающих?": "Все списки Вы можете найти на <a href='https://esstu.ru/index.htm' target='_blank'>сайте</a> ВСГУТУ",
+                "Военная кафедра": "Все вопросы по военной кафедре можете узнать в 15 корпусе",
+                "Информация о колледже": "Данную информацию можно найти на сайте ВСГУТУ"
+            };
+            return responses[input] || "Данный запрос не может быть обработан.";
+        }
+    </script>
+
+</body>

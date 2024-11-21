@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>support</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap");
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Metal Mania", cursive;
+            background: #fff; /* Цвет фона */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 50px;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 20px;
+        }
+
+        img.icon {
+            width: 40px; /* Установка ширины иконки */
+            height: auto; /* Сохраняет пропорции */
+            margin-right: 10px; /* Отступ справа от иконки */
+        }
+
+        .container {
+            display: flex; /* Используем flexbox для размещения элементов */
+            justify-content: space-between; /* Размещаем элементы по краям */
+            align-items: center; /* Центрируем по вертикали */
+            width: 100%; /* Занимаем всю ширину */
+            max-width: 1200px; /* Максимальная ширина контейнера */
+            margin-top: 20px; /* Отступ сверху для контейнера */
+        }
+
+        .text-container {
+            max-width: 60%; /* Ограничиваем ширину текстового контейнера */
+        }
+
+        .gradient {
+            font-size: 3rem; /* Уменьшенный размер шрифта */
+            line-height: 1.2; /* Сокращенное расстояние между строками */
+            background: linear-gradient(to right, #fcc133, #334efc);
+            display: inline-block;
+            /* Clip the background upto the text */
+            -webkit-background-clip: text;
+            background-clip: text;
+            /* Set the color of the text to transparent */
+            color: transparent;
+            margin: 10px 0; /* Уменьшение отступов вокруг текста */
+        }
+
+        .image {
+            width: 500px; /* Установка ширины для изображения */
+            height: auto; /* Сохраняет пропорции */
+            margin-left: 20px; /* Отступ слева для картинки */
+        }
+
+        p {
+            font-size: 30px;
+            color: #555;
+        }
+
+        .faq-link {
+            margin-left: 20px; /* Отступ слева для ссылки FAQ */
+            text-decoration: none; /* Убираем подчеркивание */
+            color: #334efc; /* Цвет ссылки */
+            font-size: 1.5rem; /* Размер шрифта для ссылки */
+            transition: color 0.3s, transform 0.3s; /* Анимация изменения цвета и трансформации */
+        }
+        .faq-linkk {
+            margin-left: 20px; /* Отступ слева для ссылки FAQ */
+            text-decoration: none; /* Убираем подчеркивание */
+            color: #334efc; /* Цвет ссылки */
+            font-size: 1.5rem; /* Размер шрифта для ссылки */
+            transition: color 0.3s, transform 0.3s; /* Анимация изменения цвета и трансформации */
+        }
+
+        .faq-link:hover {
+            color: #fcc133; /* Цвет ссылки при наведении */
+            transform: scale(1.1); /* Увеличение ссылки при наведении */
+        }
+        .faq-linkk:hover {
+            color: #fcc133; /* Цвет ссылки при наведении */
+            transform: scale(1.1); /* Увеличение ссылки при наведении */
+        }
+            
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="https://img.freepik.com/premium-vector/cat-headphones-mascot-logo-hand-drawn-illustration_442940-2557.jpg" alt="Support Icon" class="icon">
+        <h1>Support</h1>
+        <a href="HTMLPage1.html" target="_blank" class="faq-link">Часто задаваемые вопросы</a>
+        <a href="HTMLPage3.html" target="_blank" class="faq-linkk">Бот-автоответчик</a>
+    </header>
+    <div class="container">
+        <div class="text-container">
+            <h1 class="gradient">
+                Добро пожаловать на сайт технической поддержки образовательной организации!
+            </h1>
+            <p>Здесь вы сможете задать интересующие вас вопросы, а мы постараемся ответить на них как можно понятнее.</p>
+        </div>
+        <img class="image" src="https://avatars.mds.yandex.net/i?id=0f6e7109cc83f81220dc3ddebc6e1a14d4542c6e-5679112-images-thumbs&n=13" alt="Изображение" />
+    </div>
+</body>
+
+</html>
+
+
